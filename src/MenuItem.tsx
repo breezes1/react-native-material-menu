@@ -22,6 +22,7 @@ export type MenuItemProps = {
 
 export function MenuItem({
   children,
+  itemRender,
   disabled = false,
   disabledTextColor = '#bdbdbd',
   onPress,
@@ -41,12 +42,18 @@ export function MenuItem({
       {...props}
     >
       <View style={[styles.container, style]}>
-        <Text
-          numberOfLines={1}
-          style={[styles.title, disabled && { color: disabledTextColor }, textStyle]}
-        >
-          {children}
-        </Text>
+        {
+          itemRender ? (
+            React.isValidElement(itemRender) ? itemRender : itemRender(disabled, disabledTextColor)
+          ) : (
+            <Text
+              numberOfLines={1}
+              style={[styles.title, disabled && { color: disabledTextColor }, textStyle]}
+            >
+              {children}
+            </Text>
+          )
+        }
       </View>
     </Pressable>
   );
