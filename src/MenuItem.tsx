@@ -13,6 +13,7 @@ import {
 
 export type MenuItemProps = {
   children: React.ReactNode;
+  itemRender?: any;
   disabled?: boolean;
   disabledTextColor?: string;
   pressColor?: string;
