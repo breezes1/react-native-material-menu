@@ -20,6 +20,8 @@ export interface MenuProps {
   anchor?: React.ReactNode;
   style?: ViewStyle;
   onRequestClose?(): void;
+  onDismiss?(): void;
+  onShow?(): void;
   animationDuration?: number;
   testID?: string;
   visible?: boolean;
@@ -162,6 +164,14 @@ export class Menu extends React.Component<MenuProps, State> {
     this.props.onRequestClose?.();
   };
 
+  private onDismiss = () => {
+    this.props.onDismiss?.();
+  };
+
+  private onShow = () => {
+    this.props.onShow?.();
+  };
+
   render() {
     const { isRTL } = I18nManager;
 
@@ -233,6 +243,8 @@ export class Menu extends React.Component<MenuProps, State> {
         <Modal
           visible={modalVisible}
           onRequestClose={this.onRequestClose}
+          onDismiss={this.onDismiss}
+          onShow={this.onShow}
           supportedOrientations={[
             'portrait',
             'portrait-upside-down',
