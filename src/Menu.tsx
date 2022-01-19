@@ -293,6 +293,7 @@ const styles = StyleSheet.create({
     }),
   },
   menuContainer: {
+    borderRadius: 4,
     overflow: 'hidden',
   },
 });
