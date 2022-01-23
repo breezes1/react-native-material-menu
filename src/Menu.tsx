@@ -25,6 +25,7 @@ export interface MenuProps {
   animationDuration?: number;
   testID?: string;
   visible?: boolean;
+  positionOffset?: any;
 }
 
 enum States {
@@ -133,13 +134,14 @@ export class Menu extends React.Component<MenuProps, State> {
   };
 
   private show = () => {
+    const { positionOffset = {} } = this.props
     this._container?.measureInWindow((left, top, buttonWidth, buttonHeight) => {
       this.setState({
         buttonHeight,
         buttonWidth,
-        left,
+        left: left + (positionOffset['y'] || 0),
         menuState: States.Shown,
-        top,
+        top: top + (positionOffset['x'] || 0),
       });
     });
   };
